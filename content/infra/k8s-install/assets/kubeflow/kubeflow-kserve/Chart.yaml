@@ -1,0 +1,7 @@
+apiVersion: v2
+name: kserve
+version: 1.0.0
+dependencies:
+  - name: kserve
+    version: "0.15.0"
+    repository: "oci://ghcr.io/kserve/charts/kserve"

@@ -1,0 +1,58 @@
+kserve:
+  controller:
+    deploymentMode: RawDeployment
+
+  inferenceservice:
+    config:
+      k8s.demo: ""
+      ingress:
+        enableGatewayApi: false
+        kserveIngressGateway: "kserve/kserve-ingress-gateway"
+        ingressGateway: "knative-serving/knative-ingress-gateway"
+        knativeLocalGatewayService: ""
+        localGateway: "knative-serving/knative-local-gateway"
+        localGatewayService: "knative-local-gateway.istio-system.svc.cluster.local"
+        ingressClassName: "nginx"
+        ingressDomain: "k8s.demo"
+        additionalIngressDomains: []
+        domainTemplate: "{{ .Name }}-{{ .Namespace }}.{{ .IngressDomain }}"
+        urlScheme: "https"
+        disableIstioVirtualHost: false
+        disableIngressCreation: false
+# controller:
+#   deploymentMode: RawDeployment
+
+# inferenceservice:
+#   config:
+#     k8s.demo: ""
+
+#     ingress: |-
+#       {
+#         "enableGatewayApi": false,
+#         "kserveIngressGateway": "kserve/kserve-ingress-gateway",
+#         "ingressGateway": "knative-serving/knative-ingress-gateway",
+#         "knativeLocalGatewayService": "",
+#         "localGateway": "knative-serving/knative-local-gateway",
+#         "localGatewayService": "knative-local-gateway.istio-system.svc.cluster.local",
+#         "ingressClassName": "nginx",
+#         "ingressDomain": "k8s.demo",
+#         "additionalIngressDomains": [],
+#         "domainTemplate": "{{ .Name }}-{{ .Namespace }}.{{ .IngressDomain }}",
+#         "urlScheme": "https",
+#         "disableIstioVirtualHost": false,
+#         "disableIngressCreation": false
+#       }
+
+# kserve:
+#   controller:
+#     deploymentMode: RawDeployment
+
+#   inferenceservice:
+#     config:
+#       k8s.demo: ""
+
+#   ingress:
+#     enableGatewayApi: false
+#     ingressClassName: nginx
+#     ingressDomain: k8s.demo
+#     urlScheme: https

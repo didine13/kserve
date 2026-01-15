@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kserve
+spec:
+  source:
+    repoURL: https://github.com/didine13/kserve.git # ton repo Git
+    targetRevision: HEAD
+    path: content/infra/k8s-install/assets/kubeflow/kubeflow-kserve # dossier Chart.yaml ci-dessus
+    helm:
+      releaseName: kserve
+      valueFiles:
+        - values.yaml
+  # source:
+  #   chart: kserve
+  #   repoURL: ghcr.io/kserve/charts
+  #   targetRevision: v0.15.0
+  #   helm:
+  #     releaseName: kserve
+  #     valueFiles:
+  #       - values.yaml
+  #     # values: |
+  #     #   kserve:
+  #     #     controller:
+  #     #       deploymentMode: RawDeployment
+  #     #       gateway:
+  #     #         ingressGateway:
+  #     #           className: nginx
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kserve
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    automated:
+      prune: false
+      selfHeal: false
